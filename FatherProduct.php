@@ -11,7 +11,10 @@ class FatherProduct {
   public function __construct(
     private string $name,
     private float $price
-  ) {}
+  ) {
+    if ($name === '') throw new InvalidArgumentException('$name cannot be an empty string.');
+    if ($price <= 0.0) throw new InvalidArgumentException('$price must be greater than zero.');
+  }
   // Getters
   public function getName(): string {return $this->name;}
   public function getPrice(): float {return $this->price;}

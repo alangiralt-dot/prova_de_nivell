@@ -58,11 +58,6 @@ class Shop {
   }
   public function addGarment(string $category, string $name, float $price, string $size, string $color, int $quantity): void {
     if ($category === '') throw new InvalidArgumentException('$category cannot be an empty string.');
-    if ($name === '') throw new InvalidArgumentException('$name cannot be an empty string.');
-    if ($price <= 0.0) throw new InvalidArgumentException('$price must be greater than zero.');
-    if ($size === '') throw new InvalidArgumentException('$size cannot be an empty string.');
-    if ($color === '') throw new InvalidArgumentException('$color cannot be an empty string.');
-    if ($quantity <= 0.0) throw new InvalidArgumentException('$quantity must be greater than zero.');
     $fp = $this->findFatherProduct($category, $name, $price);
     if ($fp === null) {
       $this->addFatherProduct($category, $name, $price, $size, $color, $quantity);
