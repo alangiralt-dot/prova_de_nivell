@@ -2,8 +2,6 @@
 skinparam classAttributeIconSize 0
 
 class Shop {
-
-class Shop {
   - garments: array
   - getGarments(): array
   + getFatherProductWithMostSizes(): array
