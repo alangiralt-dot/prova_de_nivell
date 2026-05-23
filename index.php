@@ -16,11 +16,13 @@ $data = [
     ['jacket', 'Winter Parka', 89.95, 'XL', 'green', 5],
     ['jacket', 'Winter Parka', 89.95, 'L', 'green', 3],
     ['jacket', 'Leather Jacket', 120.00, 'M', 'black', 2],
+    ['jacket', 'Leather Jacket', 120.00, '', 'black', 2],
     ['tshirt', 'Graphic Tee', 19.99, 'M', 'white', 20],
     ['tshirt', 'Graphic Tee', 19.99, 'L', 'white', 15],
     ['tshirt', 'Graphic Tee', 19.99, 'M', 'black', 12],
     ['tshirt', 'Graphic Tee', 19.99, 'M', 'white', 5],
     ['tshirt', 'V-Neck Shirt', 15.50, 'S', 'blue', 8],
+    ['tshirt', 'V-Neck Shirt', -15.50, 'S', 'blue', 8],
     ['jeans', 'Slim Fit Denim', 49.99, '40', 'blue', 14],
     ['jeans', 'Slim Fit Denim', 49.99, '42', 'blue', 18],
     ['jeans', 'Slim Fit Denim', 49.99, '40', 'grey', 6],
@@ -33,7 +35,12 @@ $data = [
 ];
 
 foreach($data as $d){
-  $shop->addGarment($d[0], $d[1], $d[2], $d[3], $d[4], $d[5]);
+  try {
+    $shop->addGarment($d[0], $d[1], $d[2], $d[3], $d[4], $d[5]);
+  } catch(InvalidArgumentException $e) {
+    echo $e->getMessage() . ' in ' . __FILE__ . ': ' . __LINE__ . PHP_EOL;
+    print_r($d);
+  }
 }
 
 echo 'The following table is a reflection of the products that are on sale and in stock:' . PHP_EOL;
