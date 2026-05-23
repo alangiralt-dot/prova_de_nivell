@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Shop {
+
+class Shop {
+  - garments: array
+  - getGarments(): array
+  + getFatherProductWithMostSizes(): array
+  + getFatherProductByPrice(price: float): array
+  + printTable(): void
+  + addGarment(category: string, name: string, price: float, size: string, color: string, quantity: int): void
+  - findFatherProduct(category: string, name: string, price: float): ?FatherProduct
+  - addFatherProduct(category: string, name: string, price: float, size: string, color: string, quantity: int): void
+}
+class FatherProduct {
+  - childProducts: array
+  - name: string
+  - price: float
+  + getName(): string
+  + getPrice(): float
+  + getChildProducts(): array
+  + addChildProduct(size: string, color: string, quantity: int): void
+  + getSizes(): array
+  - findChildProduct(size: string, color: string): ?ChildProduct
+}
+class ChildProduct {
+  - size: string
+  - color: string
+  - stock: int
+  + getSize(): string
+  + getColor(): string
+  + getStock(): int
+  + addQuantity(quantity: int): void
+}
+Shop "  1  " *-- "  0..*  " FatherProduct : "  garments[<category>][<index>]  "
+FatherProduct "  1  " *-- "  0..*  " ChildProduct : "  childProducts[<index>]  "
+@enduml
