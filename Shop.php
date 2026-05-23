@@ -14,8 +14,8 @@ class Shop {
   public function getFatherProductWithMostSizes(): array {
     $names = [];
     $maximum = 0;
-    foreach($this->getGarments() as $array) {
-      foreach($array as $fp) {
+    foreach($this->getGarments() as $fatherProducts) {
+      foreach($fatherProducts as $fp) {
         $total = count($fp->getSizes());
         if ($total > $maximum) {
           $maximum = $total;
@@ -29,8 +29,8 @@ class Shop {
   }
   public function getFatherProductByPrice(float $price): array {
     $names = [];
-    foreach($this->getGarments() as $array) {
-      foreach($array as $fp) {
+    foreach($this->getGarments() as $fatherProducts) {
+      foreach($fatherProducts as $fp) {
         if ($fp->getPrice() <= $price) {
           $names[] = $fp->getName();
         }
@@ -40,8 +40,8 @@ class Shop {
   }
   public function printTable(): void {
     printf("%-20s%-20s%10s%10s%10s%10s\n", 'CATEGORY', 'NAME', 'PRICE', 'SIZE', 'COLOR', 'STOCK');
-    foreach($this->getGarments() as $category => $array) {
-      foreach($array as $fp) {
+    foreach($this->getGarments() as $category => $fatherProducts) {
+      foreach($fatherProducts as $fp) {
         foreach($fp->getChildProducts() as $cp) {
           printf(
             "%-20s%-20s%10.2f%10s%10s%10s\n",
