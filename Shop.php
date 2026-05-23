@@ -9,7 +9,7 @@ class Shop {
   // Properties
   private array $garments = [];
   // Getters
-  public function getGarments(): array {return $this->garments;}
+  private function getGarments(): array {return $this->garments;}
   // Methods
   public function getFatherProductWithMostSizes(): array {
     $names = [];
